@@ -9,12 +9,16 @@ import { Video } from '../../types/types';
 export class VideoListComponent implements OnInit {
 
   videoList: Video[] = videoData;
+  selectedVideoID: string;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  selectVideo(video: Video) {
+    this.selectedVideoID = video.id;
+  }
 }
 
 
