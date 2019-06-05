@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Video } from "../../types/types";
-import { HttpClient } from "@angular/common/http";
+import { VideoDataService } from "../../video-data.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-video-dashboard",
@@ -8,13 +9,11 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ["./video-dashboard.component.css"]
 })
 export class VideoDashboardComponent implements OnInit {
-  videoListData: Video[] = [];
+  videoListData: Observable<Video[]>;
   currentlySelectedVideo: Video;
 
-  constructor(http: HttpClient) {
-    http
-      .get<Video[]>("https://api.angularbootcamp.com/videos")
-      .subscribe(videoList => (this.videoListData = videoList));
+  constructor(_videoService: VideoDataService) {
+    this.videoListData = _videoService.getVideos();
   }
 
   ngOnInit() {}

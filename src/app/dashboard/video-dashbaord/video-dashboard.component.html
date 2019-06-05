@@ -2,7 +2,7 @@
   <div class="col s4">
     <app-video-list
       (onVideoSelected)="setSelectedVideo($event)"
-      [videoList]="videoListData"></app-video-list>
+      [videoList]="videoListData | async"></app-video-list>
   </div>
   <div class="col s5">
     <app-video-player
